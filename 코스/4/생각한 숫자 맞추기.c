@@ -17,10 +17,22 @@ int main(){
     if(num == 1){
         for(i = 50; i<=100; i++);{
         printf("How about %d? (try more : 1, try less : 2, right : 0)\n", i);
-        count++;}
+        count++;
+            if(num == 1){
+                for(i = 50; i<=75; i++){
+                    printf("How about %d? (try more : 1, try less : 2, right : 0)\n", i);
+                        count++;
+                }if(num == 1){
+                for(i = 75; i<=100; i++){
+                    printf("How about %d? (try more : 1, try less : 2, right : 0)\n", i);
+                        count++;
+                }
+            }
+            }
+        }
     }
     if(num == 2){
-        for(i = 50; i>=0; i--);{
+        for(i = 50; i>=1; i--);{
         printf("How about %d? (try more : 1, try less : 2, right : 0)\n", i);
         count++;}
     }
