@@ -20,11 +20,15 @@ int main() {
         for(j=1; j<=blanks; j++){
             printf(" ");
         }
-        if(i==1){
+        if(i==1 || i==lines/2+1){
             for(j=1; j<=stars; j++){
                 printf("*");
             }
         }
+        // else if(i=lines/2){
+        //     for(j=1; j<=stars; j++)
+        //     printf("*");
+        // }
         else{
             printf("*");
             for(j=1; j<=stars-2; j++){
