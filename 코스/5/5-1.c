@@ -32,7 +32,7 @@ int main(){
 // 30 <= age < 60: Middle aged
 // 60 <= age: Elderly
   
-  scanf("%d", &year[100]);
+  scanf("%d", &year[100]); //변수쓸때 array면 array space까지 적어주기
   
   
   
