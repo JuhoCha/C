@@ -10,8 +10,21 @@ int main(){
   //큰수는 큰수보다 크면으로 작은수는 작은수보다 작은수로 비교하고
   //조건문써서 min max해당 안하는 애들만 모아서 평균
   
-  scanf("%d", &score[10]);
-  for()
+  for(i=0; i<10; i++){
+    scanf("%f", &score[i]);
+    
+    if(score[i]>max){
+        max = score[i]; //min에 score[i] 대입해야지 score[i]에 min 대입 x
+    }
+    if(score[i]<min){
+        min = score[i];
+    }
+    total = total+score[i];
+    
+  }
+  
+  average = (total-min-max)/8.0;
+  printf("%.1f", average);
 
 
   return 0;
