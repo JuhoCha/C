@@ -16,7 +16,14 @@ int main(){
 	int direction, size; // 방향, 크기
 	scanf("%d %d", &direction, &size);
     
-    int blank = 0;
+    int blank;
+    
+    if(direction==1){
+        blank = 0;
+    }
+    if(direction==2){
+        blank = 4;
+    }
     
     for(int i=0; i<4; i++){
         if(direction==1){
@@ -29,8 +36,7 @@ int main(){
             blank++;
         }
         if(direction==2){
-            blank = size/2;
-            for(int j=blank; j<=0; j--){
+            for(int j=0; j<blank; j++){
                 printf(" ");
             }
             for(int j=0; j<size; j++){
@@ -61,7 +67,7 @@ int main(){
             }
         }
     }
-    for(int i=5; i<10; i++){
+    for(int i=4; i<9; i++){
         if(direction==1){
             for(int j=0; j<blank; j++){
                 printf(" ");
