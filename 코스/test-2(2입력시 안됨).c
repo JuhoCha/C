@@ -29,11 +29,12 @@ int main(){
             blank++;
         }
         if(direction==2){
-            for(int j=0; j<blank; j++){
+            blank = size/2;
+            for(int j=blank; j<=0; j--){
                 printf(" ");
             }
             for(int j=0; j<size; j++){
-                printf("<");
+                printf(" <");
             }
             blank--;
         }
@@ -52,11 +53,11 @@ int main(){
             
         }
         if(direction==2){
-            for(int j=0; j<0; j++){
+            for(int j=0; j<blank; j++){
                 printf(" ");
             }
             for(int j=0; j<size; j++){
-                printf("<");
+                printf(" <");
             }
         }
     }
@@ -75,7 +76,7 @@ int main(){
                 printf(" ");
             }
             for(int j=0; j<size; j++){
-                printf("<");
+                printf(" <");
             }
             blank++;
         }
