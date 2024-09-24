@@ -28,7 +28,7 @@ int main(){
             printf("<");
         }
         //중간
-        if(size==(size*2-1)/2){
+        if(size<(size*2-1)/2){
             for(int j=0; j<size*2; j++){
             printf(" ");
             }
@@ -45,7 +45,7 @@ int main(){
         for(int j=0; j<blank; j++){
             printf(" ");
         }
-        blank--;
+        blank++;
         Rarrow++;
         Larrow++;
     printf("\n");
@@ -62,7 +62,7 @@ int main(){
             printf("<");
         }
         //중간
-        if(size==(size*2-1)/2){
+        if(size>(size*2-1)/2){
             for(int j=0; j<size*2; j++){
             printf(" ");
             }
