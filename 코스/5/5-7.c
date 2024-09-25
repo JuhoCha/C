@@ -22,10 +22,26 @@ line
 
 for(i=0; i<5; i++){
     for(j=0; j<3; j++){
-        scanf("%d", &number[i][j])
+        scanf("%d", &number[i][j]);
+        floor_total[i]+=number[i][j];
+        line_total[j]+=number[i][j];
+        total+=number[i][j];
     }
 }
- 
+
+
+
+
+for(i=0; i<5; i++){
+    printf("Floor:%d, %dpeople\n", i+1, floor_total[i]);
+}
+
+for(j=0; j<3; j++){
+    printf("The number of people living in the unit %d line: %d\n", j+1, line_total[j]);
+};
+
+printf("Total number of people living in the apartment: %d", total);
+
 
   return 0;
 }
