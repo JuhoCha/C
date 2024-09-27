@@ -11,7 +11,7 @@ int main() {
   
     
     int save[101]={0};
-    
+    int max=0;
     int count=0;
     int i=0;
     
@@ -20,17 +20,21 @@ int main() {
     for(int i=0; i<100; i++){
         if(list[i]>=0&&list[i]<=9){
             save[list[i]]++;
-            if(save[list[i]]>count&&save[list[i]]==count){
+            if(save[list[i]]=list[i]){//save에 list같으면 입력된 수 저장
                 count=save[list[i]];
-            }
+                if(count>max){
+                    max=count;
+                }
+            }else if(save[list[i]]!=list[i]&&save[list[i]]>)
         }
     }
 
     for(i=0; i<101; i++){
-        if(save[i]==count){
+        if(save[i]==max){
+            
             printf("같은 값: %d ", i);
         }
-    }printf("연속되는 수의 개수: %d\n", count);
+    }printf("연속되는 수의 개수: %d\n", max);
 
     return 0;
 }
