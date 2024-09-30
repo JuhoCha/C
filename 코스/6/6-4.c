@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#define yes 0//존재
-#define no 1//존재 xx
+
 
 int main() {
 //로그인 성공
@@ -16,22 +15,24 @@ int main() {
   char id[20];
   char pw[20];
   
+  int i; 
   
+  scanf("%s", id);
+  scanf("%s", pw);
   
-  while(1){
-      fgets(id, 20, stdin);
-    //   if(strcmp(id[5][20], username[5][20])==1){
-    //       printf("No such ID exists");
-    //   }
-    id[strcmp(id, )]
-      fgets(pw, 20, stdin);
-      if(strcmp(pw[5][20], password[5][20])==1 && strcmp(id[5][20], username[5][20])==0 ){
-          printf("ID is correct, but the password is incorrect");
+  for(i=0; i<5; i++){
+      
+      if(strcmp(id, username[i])==0){//0이걸로 같음 확인
+          if(strcmp(pw, password[i])==0){
+                printf("Login successful");
+          }else{
+                printf("ID is correct, but the password is incorrect");
+          }
+          return 0;
       }
-      if(strcmp(id[5][20], username[5][20])==0 && strcmp(pw[5][20], password[5][20])==0){
-          printf("Login successful");
-      }break;
   }
+  
+    printf("No such ID exists");
 
   return 0;
 }
