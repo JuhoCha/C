@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+  //회문 비교해야 하는데
+  // 회문은 sns처럼 중간 기준으로 앞뒤가 똑같은거다
+  //입력받는 문장에서 알파벳만 골라서 새로운 문자열 만들고
+  //이 문자열에 대해 양쪽 끝에서 가운데까지 각각의 모든 문자가 같은지
+  
+  char alpha[100];
+  char reverse[100];
+  int alphalen=0; 
+  int reverselen=0;
+  int i; 
+  
+  
+  fgets(alpha, sizeof(alpha), stdin);
+  
+  
+  alphalen=strlen(alpha);
+  for(i=0; i<alphalen; i++){
+      reverse[reverselen++]=alpha[i];
+  }
+  
+  for(i = 0; alpha[i] != '\0'; i++){
+      if (alpha[i] >= 'a' && alpha[i] <= 'z'){
+          if(alpha[i] >= 'A' && alpha[i] <= 'Z')
+          reverse[reverselen++] = alpha[i];
+      }
+  }
+  
+  for(i=0; i<reverselen/2; i++){
+      int alphalen = strlen(alpha);
+    //   int reverselen = strlen(reverse[i]);
+      char r_save = reverse[i];
+      reverse[i]=reverse[reverselen-1-i];
+      reverse[reverselen-1-i] = r_save;
+  }
+  reverse[alphalen]='\0';
+  
+  
+  for (i = 0; i < reverselen / 2; i++) {
+        if (reverse[i] != reverse[reverselen - 1 - i]) {
+            printf("No\n");
+            return 0;
+        }
+    }
+    printf("Yes\n");
+  
+  return 0;
+}
