@@ -1,0 +1,51 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+/*
+임의의 월(년도,월)에 대한 달력을 출력하는 프로그램을 작성하시오.
+
+아래의 내용을 참고하여(그대로 이용 또는 변형 가능), Function의 개념을 최대한 활용하여 작성할 것
+
+(단, 년도는 1900년 이후만을 고려함을 가정함)
+*/
+
+int main() {
+int  month_days(int y,  int  m);
+int  first_day(int  y, int  m);
+
+void print_calendar(int  ndays, int  d1);
+
+ . . . .
+
+int main(){
+    int y, m, ndays, d1;
+    scanf(“%d %d “, &y, &m);
+    ndays = month_days(y, m);
+    d1 = first_day(y, m);
+    print_calendar(ndays, d1);
+}
+
+int  month_days(int  y, int  m)
+
+{
+
+  . . . . 해당 월의 날짜수를 return
+
+}
+
+ int  first_day(int  y, int  m)
+
+{
+
+  .  . . . 해당 월의 1일의 요일을 return
+
+}
+
+void print_calendar(int  ndays, int  d1)
+
+{
+
+  . . . . 달력을 출력
+
+}
+    return 0;
+}
