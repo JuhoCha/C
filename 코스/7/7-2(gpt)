@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+int main() {
+    int lotto[6];  // 컴퓨터가 만들어 낸 로또 번호
+    int onemore;   // 반복 여부 입력 (1:Yes, 2:No)
+    int i;         // 반복문을 위한 변수  
+    int count;
+    int flag;
+    int newnum;
+
+    srand(time(0));
+    
+    do {
+        count = 0;  // 새로운 로또 번호 생성을 위해 초기화
+        while(count < 6) {
+            newnum = rand() % 45 + 1;
+            flag = 0;
+            
+            for(i = 0; i < count; i++) {
+                if(newnum == lotto[i]) {
+                    flag = 1; // 중복
+                    break;
+                }
+            }
+            
+            if(flag == 0) {
+                lotto[count] = newnum;
+                count++;
+            }
+        }
+        
+        // 로또 번호 출력
+        printf("Generated lotto numbers: ");
+        for(i = 0; i < 6; i++) {
+            printf("%d ", lotto[i]);
+        }
+        printf("\n");
+        
+        // 반복 여부 묻기
+        printf("Would you like to generate more numbers? (1:Yes, 2:No) >> "); 
+        scanf("%d", &onemore);
+        
+    } while(onemore == 1);
+    
+    return 0;
+}
