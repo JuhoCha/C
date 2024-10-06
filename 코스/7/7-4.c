@@ -25,17 +25,21 @@ int main() {
         printf("Please enter Rock (1), Paper (2), or Scissors (3).");
         scanf("%d", &my_finger);
         
+        if(my_finger==0){
+            printf("Computer wins: %d, Draws: %d, User wins: %d\n", score[0][0], score[0][1], score[1][0]);
+            break; //배열 넣을때 머릿속으로 그림 그려야함 2차원이면
+            //승무패
+            //승무패 이렇게 있는데 차피 무승무는 둘다 올라가는 거니까 상관없고 컴퓨터 승 유저 승만 따로 해주면 되는데 0이 승이니까 
+        }
         if((my_finger<1)||(my_finger>3)){
             printf("Invalid input.\n"); continue;
         }
-        if(my_finger==0){
-            printf("Computer wins: %d, Draws: %d, User wins: %d\n", score[0][0], score[0][1], score[1][0]);
-        }
+        
         
        com_finger = rand()%3+1;
        
        if(com_finger==1){
-            rsp[0][10]=com_finger;
+            rsp[0][10]=com_finger; //이 논리가 통해서 다행이다. 
         }
         if(com_finger==2){
             rsp[1][10]=com_finger;
@@ -46,13 +50,15 @@ int main() {
        
        if((com_finger == 1 && my_finger == 3)||(com_finger == 2 && my_finger == 1)||(com_finger == 3 && my_finger == 2)){
            printf("Computer: %s Computer Wins!\n", rsp[com_finger-1]);
+           score[0][0]++;
        }
        else if(my_finger==com_finger){
-           printf("Computer: %s Draw~\n", rsp[com_finger-1]);
-           
+           printf("Computer: %s Draw~\n", rsp[com_finger-1]); //할때는 rsp 배열에 서장되는 거니까 rsp 배열을 불러왔어야 함
+           score[0][1]++;
        }
        else{
            printf("Computer: %s User Wins!\n", rsp[com_finger-1]);
+           score[1][0]++;
        }
         
     }
