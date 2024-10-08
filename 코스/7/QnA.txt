@@ -1,0 +1,84 @@
+두번째로 큰 수에서 같은 수를 어떻게 처리할 것인지?
+--> 11111211 이런 배열이라면
+1이 두번째 큰 수이고 이 수가 제일 처음 나오는 값이면 첫번째 1이면 얘가 출력되게
+
+변수 이름을 정하는 방법
+-->
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main(void) {
+    // Write C code here
+    char str[100]; //배열은 넉넉하게 써라
+    printf("string>");
+    scanf("%s", str); //왜 & 안쓰나? --> 배열이라서 이미 주소할당이 되어 있기에 &써줄 필요 없다.
+    printf(">>>>%s<<<<<\n", str);
+
+    return 0;
+}
+
+fgets() 의 동작 방법과 New line 문자 삭제할 때 주의할 점 - 조건문 걸기
+-->
+// Online C compiler to run C program online
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+    // Write C code here
+    char str[100]; //배열은 넉넉하게 써라
+    printf("string>");
+    fgets(str, 100, stdin); //문자열을 입력받는데 빈칸도 포함 심지어 마지막 \n도 포함
+    int length = strlen(str);
+    if(str[length-1]=='\n'){
+        str[length-1]='\0'; //마지막 글자를 널문자로 바꿈
+    }
+    //널 문자란? 의미는 없다! 문자열에서의 의미는 끝
+    //보통은 키보드로 입력할 때 fgets()가 마지막 \n까지 입력을 받지만, 그렇지 않은 경우도 있을 수 있으므로
+    //마지막 문자가 \n인지 확인해서 \0으로 바꾸도록 해야한다. 
+    printf(">>>>%s<<<<<\n", str);
+
+    return 0;
+}
+
+문자열 개념 다시 설명하기 - 널문자의 용도
+-->
+#include <stdio.h>
+
+int main(void) {
+  char str[50]; // 문자의 배열, 문자열 변수
+  printf("String>"); 
+  fgets(str, 50, stdin); 
+  int length = strlen(str);
+  if(str[length-1] == '\n')
+    str[length-1] = '\0'; 
+  printf("Before: %s\n", str);
+  length = strlen(str);
+  for(int i=0; i<length; i++){
+    // 소문자면 대문자로 바꿈
+    //if(str의 i번째 문자가 'a'보다 크거나 같고, 'z'보다 작거나 같으면)
+    if(str[i] >= 'a' && str[i] <='z')
+      //대문자로 바꿔 --> 현재문자의 값에서 ('a'-'A')만큼 빼준다.
+      str[i] = str[i] - ('a'-'A');
+  }
+  printf("After: %s\n", str);
+return 0;
+}
+
+랜덤수 만드는 개념과 테스트 방법
+--> #include <stdlib.h> <time.h> include 꼭 해줘야함
+int number;
+srand(); //seed값을 파라미터로 준다.
+//그럼 실행할 때 마다 seed값이 달ㄹ라지게 하려면 seed 값을 가만히 있어도 계속 변하는 값을 넣어줌. 그게 시간. 시간은 계속 흐르니까 srand(time(0)); 해주는거
+//근데 범위를 지정하고 싶다. 예를들어 1부터 45까지 하겠다! 하면 rand()%45-->45로 나눈 나머지 즉 0부터45 근데 시작값을 1로 해줘야 하니까 rand()%45+1;
+number=rand();
+printf("Number: %d\n", number);
+
+
+코드 4원칙 중 마지막
+--> 
+/*
+  주기와 받기 --> 함수 사용, 주기와 받기를 어떻게 할지 잘 결정해서 사용하면 됨!! 뭐가 중요하냐면 주기와 받기의 타입을 잘 맞춰주는것..
+  function : 뭔가 작업을 수행하는 모듈(함수, 코드, 서브프로그램, 프로시져)
+  1) 주기 (인자, 인수, 파라미터 parameter) - 이 함수가 일을 하기 위해서 함수를 부르는(call) 쪽에서 전해주는 데이터들(0개 이상)-->파라미터가 뭐냐 뭘 줘야하냐 
+  2) 받기 (리턴값, return value) - 이 함수가 일을 마치고 나서 함수를 부른 쪽에게 돌려주는 데이터, 즉 하나 또는 제로-->리턴값이 뭐야 답이 뭐냐 //일단 리턴값은 하나 
+*/
