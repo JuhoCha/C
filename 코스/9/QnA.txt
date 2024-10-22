@@ -1,1 +1,112 @@
+srand() 쓸 떄 계속 변하는 시드값 넣어서 섞는다. --> 그래서 srand(time(0)) 넣어줌 시간은 계속 바뀌니까: #time.h
+나머지 연산 팁.
+  - 몇개나 만들어야 할까?
+  - 시작은?
+  - ex) 100~999라고 하면?
+    - 몇개 만들어야 하는가? 900개.
+    - number = rand() % 900 + 100; 
 
+  - row/colum Matrix --> 행 열 int A[10][5]; row = 10; colum = 5; 
+    - \n이게 10개라는거고 colum은 " "이 10개라는겨
+    - Ex) 5명의 과목 수 5행 학생, 5열은 과목;
+
+  - If(a==b&&a==c) 이렇게 써야하는데 
+    - (a==b==c) 이렇게 쓰면 안된다 
+
+  - main은 어디에 주는거냐?
+    - 메인은 콜 한적이 없는데 왜? --> 시스템이 콜
+    - main의 return 값 안쓰면 버려지는데 return 0 은 문제없이 잘 실행한다. 
+
+  - 함수를 미리 선언하지 않고 선언과 동시에 정의해도 되냐?
+    - 함수를 부르려면 나보다 코드 상 위에 있어야 하는데 그래서 불러야 하니까 먼저 이름만 올려둔거 
+    - 즉 웨이팅 할때 이름만 적어둠
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+// 1번함수: 한 줄에 별을 몇개 찍는 함수
+// 1번. 함수이름은? printStars()
+// 2번. 뭘 줄까? --> 몇개찍을지? int size
+// 3번. 뭘 받을까? --> 필요없음 void
+// 함수의 원형을 적는다.
+// 함수를 만들어야지..
+void printStars(int size);
+
+// 2번함수: 한 줄에 공백 몇개와 별 몇개를 찍는 함수
+// 1번. 함수이름은? printStarsWithBlanks()
+// 2번. 뭘 줄까? --> 별을 몇개 찍을지? 공백을 몇개 찍을지? int size_star, int size_blank
+// 3번. 뭘 받을까? --> 필요없음 void
+// 함수의 원형을 적는다.
+// 함수를 만들어야지..
+void printStarsWithBlanks(int size_star, int size_blank);
+
+// 3번함수: 한 줄에 공백 몇개와 특정문자 몇개를 찍는 함수
+// 1번. 함수이름은? printCharsWithBlanks()
+// 2번. 뭘 줄까? --> 별을 몇개 찍을지? 공백을 몇개 찍을지? 무슨글자를 찍을지? int size_star, int size_blank, char ch
+// 3번. 뭘 받을까? --> 필요없음 void
+// 함수의 원형을 적는다.
+// 함수를 만들어야지..
+void printCharsWithBlanks(int size_star, int size_blank, char ch);
+
+int main(void) {
+
+  int stars;
+  int blanks;
+  int size;
+  scanf("%d", &size);
+  stars = 1; blanks = size-1;
+  for(int i=0; i<size; i++){
+  /* 함수없이 구현
+    for(int j=0; j<blanks; j++) printf(" ");
+    for(int j=0; j<stars; j++) printf("*");
+    printf("\n");
+    */
+    // 1번함수 사용하여 구현
+    //printStars(stars); // stars만큼의 별을 찍어라.
+    // 2번함수 사용하여 구현
+    //  printStarsWithBlanks(stars, 0); // stars만큼의 별을 찍어라.
+    //printStarsWithBlanks(stars, blanks); // blanks만큼의 공백 찍고 stars만큼의 별을 찍어라.
+
+    // 3번함수 사용하여 구현
+    printCharsWithBlanks(stars, blanks, '$'); // blanks만큼의 공백 찍고 stars만큼의 ?문자를 찍어라.
+
+    stars++; blanks--;
+  }
+ /* 
+  int number;
+  int A[10][5]; // --> row 10행(줄), column 5열(칸)
+  srand(time(0)); // 계속 변하는 시드값을 넣어주어서 섞기
+  for(int i=0; i<10; i++){
+    number = rand() % 900 + 100; // 내가 원하는 범위의 숫자를 만들고 싶어. 어떻게? 나머지 연산을 활용한다.
+    // 예를 들어서 3자리 정수를 만들려면? 100~999
+    // 첫째, 몇개나 만들어야 할까? 900개
+    // 둘째, 시작은? 100
+    printf("number: %d\n", number);
+  }
+  //if (a==b && a==c)
+  //if (a==b==c)
+  */
+  
+  return 0;
+}
+
+void printStars(int size){
+  // 함수 구현코드를 넣는다.
+  for(int i=0; i<size; i++) printf("*");
+  printf("\n");
+}
+
+void printStarsWithBlanks(int size_star, int size_blank){
+  // 함수 구현코드를 넣는다.
+  for(int i=0; i<size_blank; i++) printf(" ");
+  for(int i=0; i<size_star; i++) printf("*");
+  printf("\n");
+}
+
+void printCharsWithBlanks(int size_star, int size_blank, char ch){
+  // 함수 구현코드를 넣는다.
+  for(int i=0; i<size_blank; i++) printf(" ");
+  for(int i=0; i<size_star; i++) printf("%c", ch);
+  printf("\n");
+
+}
