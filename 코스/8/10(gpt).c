@@ -21,68 +21,46 @@ int main() {
 
         // 빙고판 마크
         if (markBingo(num, bingo) == 0) {
-            // 중복된 경우 한 번만 출력하고 루프를 계속
+            // 중복된 경우 한 번만 출력
             printf("중복!\n");
-        } else {
-            // 중복이 아닐 경우 빙고 체크
-            bingoCount = 0;
+            continue; // 중복된 경우 다시 입력 받도록 처리
+        } 
+        
+        // 중복이 아닐 경우 빙고 체크
+        bingoCount = 0;
 
-            // 행 빙고 체크
-            for (int i = 0; i < 5; i++) {
-                int rowgo = 1;
-                for (int j = 0; j < 5; j++) {
-                    if (bingo[i][j] != 1) {
-                        rowgo = 0;
-                        break;
-                    }
-                }
-                if (rowgo) {
-                    bingoCount++;
-                }
-            }
-            
-            // 열 빙고 체크
-            for (int i = 0; i < 5; i++) {
-                int colgo = 1;
-                for (int j = 0; j < 5; j++) {
-                    if (bingo[j][i] != 1) {
-                        colgo = 0;
-                        break;
-                    }
-                }
-                if (colgo) {
-                    bingoCount++;
-                }
-            }
-
-            // 대각선 빙고 체크 (왼쪽 위에서 오른쪽 아래)
-            int diag1 = 1;
-            for (int i = 0; i < 5; i++) {
-                if (bingo[i][i] != 1) {
-                    diag1 = 0;
+        // 행 빙고 체크
+        for (int i = 0; i < 5; i++) {
+            int rowgo = 1;
+            for (int j = 0; j < 5; j++) {
+                if (bingo[i][j] != 1) {
+                    rowgo = 0;
                     break;
                 }
             }
-            if (diag1) {
+            if (rowgo) {
                 bingoCount++;
             }
-
-            // 대각선 빙고 체크 (오른쪽 위에서 왼쪽 아래)
-            int diag2 = 1;
-            for (int i = 0; i < 5; i++) {
-                if (bingo[i][4 - i] != 1) {
-                    diag2 = 0;
+        }
+        
+        // 열 빙고 체크
+        for (int i = 0; i < 5; i++) {
+            int colgo = 1;
+            for (int j = 0; j < 5; j++) {
+                if (bingo[j][i] != 1) {
+                    colgo = 0;
                     break;
                 }
             }
-            if (diag2) {
+            if (colgo) {
                 bingoCount++;
             }
+        }
 
-            // 빙고가 발생하면 메시지 출력
-            if (bingoCount > 0) {
-                printf("빙고! %d줄\n", bingoCount);
-            }
+        // 빙고가 발생하면 메시지 출력
+        if (bingoCount > 0) {
+            printf("빙고!\n", bingoCount);
+            break;
         }
     }
 
