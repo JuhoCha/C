@@ -1,0 +1,89 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+//포인터란? 주소라는 특별한 타입의 데이터를 다루는 변수. (실제로는 양의숫자)
+//변수는 데이터를 담고 있는 그릇. (실제로는 어딘가 위치가 있을 것!)
+//포인터 다루는 기본 문법:
+//포인터로 사용하는 변수 선언하려면? 어떤 종류의 데이터 담고 있는 주소를 포인터로 다루고 싶은지 결정해야함. 
+//int* p; --> 정수형 변수가 들어있는 주소를 다룰 때.
+//float* p; --> 실수형 변수가 들어있는 주소를 다룰 때.
+
+//--> 왜? 데이터의 형식(타입)에 따라 차지하는 메모리 크기가 다름. 
+//어떤 변수의 주소를 알아내려면? 변수 앞에 &표시
+//어떤 포인터 변수가 가리키는 주소 알려면? 변수 앞에 *표시
+
+// int main() {
+//     // Write C code here
+//     int num1, num2, num3; //선언 하자마자 num이라는 이름으로 정수를 담을만한 공간 생성 --> num 123 하면 나란히 선언했을때 4씩 차이남. 즉 4바이트 차이라는 거임. 
+//     printf("num: %d\n", num1);
+//     printf("adress of num : %u\n", (unsigned)&num1); //부호가 없는 수로  찍기가능 
+//     printf("adress of num : %u\n", (unsigned)&num2);
+//     printf("adress of num : %u\n", (unsigned)&num3);
+
+//     return 0;
+// }
+
+
+// int main(void){
+//     int num[5];
+//     printf("address of num: %u\n", (unsigned)num);//56으로 끝난다면 해당 배열의 주소는 56인거임 
+//     for(int i=0; i<5; i++){
+//         printf("address of num[%d]: %u\n", i, (unsigned)&num[i]);//배열 이름 썼으면 & 이거 써야함.
+//     }
+    
+//     return 0;
+// }
+
+// int main(void){
+//     char num[5];
+//     printf("address of num: %u\n", (unsigned)num);//캐릭터는 1바이트
+//     for(int i=0; i<5; i++){
+//         printf("address of num[%d]: %u\n", i, (unsigned)&num[i]);//배열 이름 썼으면 & 이거 써야함.
+//     }
+    
+//     return 0;
+// }
+
+
+// int main(void){
+//     char str[5]="Hello";
+//     printf("address of num: %u\n", (unsigned)str);//56으로 끝난다면 해당 배열의 주소는 56인거임 
+//     for(int i=0; i<5; i++){
+//         printf("address of num[%d]: %u '%c'\n", i, (unsigned)&str[i], str[i]);//배열 이름 썼으면 & 이거 써야함.
+//     }char* cp;
+//         cp = str;//str 배열 이름은 첫번째 요소 주소값. cp에 옮긴거. 
+    
+//     for(int i=0; i<5; i++){
+//         printf("char at cp: %u '%c'\n", (unsigned)cp, *cp);//배열 이름 썼으면 & 이거 써야함.
+//         cp++;
+//     }
+    
+//     return 0;
+// }
+//배열과 포인터는 친하다.
+
+// int main(void){//아까와 다르게 int만 바뀌고 똑같음 
+//     int str[5]={100, 200, 300, 400, 500};
+//     printf("address of num: %u\n", (unsigned)str);
+//     for(int i=0; i<5; i++){
+//         printf("address of num[%d]: %u '%d'\n", i, (unsigned)&str[i], str[i]);
+//     }int* cp;
+//         cp = str;
+    
+//     for(int i=0; i<5; i++){
+//         printf("char at cp: %u '%d'\n", (unsigned)cp, *cp);
+//         cp++; //+4 의미함. 
+//     }
+    
+//     return 0;
+// }
+
+// int main(void){//아까와 다르게 int만 바뀌고 똑같음 
+//     char str[100]="Hello World";
+//     char* cp;
+    
+//     cp = str;
+    
+//     printf("%c", *(cp+7));
+//     return 0;
+// }
