@@ -1,0 +1,198 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+// Student ID  Name  Honor code
+// 22400719 차주호 나 차주호는 하나님과 사람 앞에서 정직하고 성실하게 코딩 테스트를 수행하겠습니다. 
+#define SIZE 50
+char genre_name[10][20] = {"","Drama","Action","Romance","Sci-Fi","Horror","Comedy"};
+
+// Functions completed
+void list_record(char title[][100], int year[], int genre[], int playtime[], int viewers[], int index);
+void list(char title[][100], int year[], int genre[], int playtime[], int viewers[], int size);
+void random_pick(int result[3], int size);
+void list_genre(int result[7]);
+
+// Functions you need to implement
+void search(char title[][100], int year[], int genre[], int playtime[], int viewers[], int size);
+void random_list(char title[][100], int genre[], int pickup[3]);
+void count_genre(int genre[], int size, int result[7]);
+int find_max(int num_array[], int size);
+
+// You can't change the main() function.
+int main(){
+/*
+Write down your understanding of the code for this function.
+SIZE 50으로 되어있고, 장르는 6개 랜덤 사용해서 랜덤변수 불러왔구요
+fgets 사용해서 이 문장 단어 받아왔습니다. 그리고 Strlen으로 엔터가 쳐지면 그게 끝 즉 null판정 되게 
+strlen(title[i]=='\n') 
+1번 리스트 변수에 있는 것들 다 나오고 애초에 된다고 하셨음,
+2번 누르면 search 해서 키워드들 나와야 하는데 strstr
+3번은 두 변수 들고 옴 영화 제목, 장르 랜덤으로 3개만 들고 오는거다,
+4번은 max로 비교해야 한다. 제일 큰 혹은 긴 인덱스>max max랑 교대해줌.
+*/
+	char title[SIZE][100];
+	int year[SIZE], genre[SIZE], playtime[SIZE], viewers[SIZE];
+	int size, menu;
+	int pick[3], top, count[10];
+	srand(1000);
+	scanf("%d", &size);	
+	for (int i=0; i<size; i++){
+		getchar();
+		fgets(title[i], 100, stdin);
+		if(title[i][strlen(title[i])-1] == '\n') title[i][strlen(title[i])-1] = '\0';
+		scanf("%d %d %d %d", &year[i], &genre[i], &playtime[i], &viewers[i]);
+	}
+	printf("%d records saved.\n", size);
+	while(1){
+		printf("\nMenu (1:List 2:Search 3:Random 4:Report 0:Exit) > ");
+		scanf("%d", &menu);
+		if(menu==0) break;
+		if(menu == 1) list(title, year, genre, playtime, viewers, size);
+		else if(menu == 2) search(title, year, genre, playtime, viewers, size);
+		else if(menu == 3) {
+			random_pick(pick, size);
+			random_list(title, genre, pick);
+		}
+		else if(menu == 4){
+			printf("1. Number of movies by genre\n");
+			count_genre(genre, size, count);
+			list_genre(count);
+			
+			top = find_max(playtime, size);
+			printf("2. Longest Playtime\n>>>");
+			list_record(title, year, genre, playtime, viewers, top);
+			
+			top = find_max(viewers, size);
+			printf("3. Most viewers\n>>>");
+			list_record(title, year, genre, playtime, viewers, top);
+		}
+	}
+	return 0;
+}
+
+void list_record(char title[][100], int year[], int genre[], int playtime[], int viewers[], int index){
+/*
+Write down your understanding of the code for this function.
+형식을 알 수 있고, list가 저장되어 있어서 나중에 뭔가 얘를 불러야 할수도 있겠다..
+그리고 index에 저장되어 있구나 
+*/
+	printf("%s [%d, %s] ", title[index], year[index], genre_name[genre[index]]);
+	printf("Playtime %dmin, Viewers %d\n", playtime[index], viewers[index]);
+}
+
+void list(char title[][100], int year[], int genre[], int playtime[], int viewers[], int size){
+/*
+Write down your understanding of the code for this function.
+%2d 이 형식으로 1. 2. 이런거 프린트 해야 하는구나!
+얘가 list_record를 불러오는구나 그래서 1. 뒤에 영화 상세 정보가 붙는구나
+*/
+	for(int i=0; i<size; i++){
+		printf("%2d. ", i+1);
+		list_record(title, year, genre, playtime, viewers, i);
+	}
+}
+
+void random_pick(int result[3], int size){
+/*
+Write down your understanding of the code for this function.
+랜덤 변수들 세개 찾는건데 첫번째 사이즈만큼 랜랜덤
+그리고 duplicated =0으로 정의하면서 이미 생성이 된 랜덤 수라면 duplicated =1로 바꾸고
+그래서 겹치지 않게 만들었다. 
+
+*/
+	int duplicated, count=0;
+	while(count<3){
+		int number = rand()%size;
+		duplicated = 0;
+		for(int i=0; i<count; i++){
+			if(number == result[i]) duplicated = 1;
+		}
+		if(duplicated == 0){
+			result[count] = number; count++;
+		} 
+	}
+}
+
+void list_genre(int result[7]){
+/*
+Write down your understanding of the code for this function.
+이거는 영화 장르와 그 장르들이 몇개나 나오는지 알려주는 거구나!
+result 쓰는거니까 그래서 안나오나?라는 생각이 들었습니다. 
+
+*/
+	for(int i=1; i<=6; i++){
+		printf("%s \t %d movies \n", genre_name[i], result[i]);
+	}
+}
+
+////////////////////////////////////
+
+void search(char title[][100], int year[], int genre[], int playtime[], int viewers[], int size){
+	char keyword[50];
+	int count=0;
+	printf("Enter a keyword > ");
+	scanf("%s", keyword);
+
+	// Your thought and code here!
+	//strstr 이 먼저 떠오른다. 
+	//반복을 먼저 해줘야겠죠? 왜냐면 index를 사용하니까요
+	for(int i=0; i<size; i++){
+	    if(strstr(title[i], keyword) != NULL){
+	        printf("%2d. ", i+1);
+		    list_record(title, year, genre, playtime, viewers, i);
+	        count++;
+	    }
+	}
+	
+	printf("%d found.\n", count);
+}
+
+void random_list(char title[][100], int genre[], int pickup[3]){
+
+	// Your thought and code here!
+	//일단 pickup[3]이걸 활용해야겠죠? 그러면
+	//3개 변수 반복해주고 
+	for(int i=0; i<3; i++){
+	    printf("%2d. ", i+1);
+	    printf("%s [%s] ", title[pickup[i]], genre_name[genre[pickup[i]]]);
+	}
+
+}
+
+void count_genre(int genre[], int size, int result[7]){
+
+	// Your thought and code here!
+	// 먼저 장르가 몇개냐! 결과값을 저장하기 전에 초기화를 해줘야 한다!
+	// 장르수 카운트 해준다.
+	// 그래서 반복이 될 때 ++ 해주면 올라가겠지?
+	// 앞에서 코드 분석할 때 어떤게 어디랑 어떻게 연결이 되어있는지 똑바로 확인해야 하는데 
+	// 여기서는 result가 list_genre랑 연결이 되어있으니 result가. 
+	
+	for(int i=0; i<7; i++){
+	    result[i]=0;
+	}
+	for(int i=0; i<size; i++){
+	    result[genre[i]]++;
+	}
+	
+}
+
+int find_max(int num_array[], int size){
+	int max=0;
+	int max_index=0;
+
+
+	// Your thought and code here!	
+    //max보다 크다.
+    //max_index는 그러면 i.가 그 순서일거다. 
+    
+    for(int i=0; i<size; i++){
+        if(num_array[i]>max){
+            max = num_array[i];
+            max_index = i;
+        }
+    }
+	
+	return max_index;
+}
+
