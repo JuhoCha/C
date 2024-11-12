@@ -1,0 +1,47 @@
+* 포인트 표시는 주소
+
+그리고 쓰기 읽기
+int *max = num[0]해서 맨 처음 값이 최대라고 하면 갱신이 될겨
+
+*들어가는게 맞는지 보려면 type이 같은지 봐야하는데
+void maxMinOfTen(int number[10], int* maxmin[]){
+    int* max = &number[0]; // 최대값이 들어있는 주소
+    int* min = &number[0]; // 최소값이 들어있는 주소
+    for(int i=0;i<10;i++){
+      if(*max < number[i]) max = &number[i];
+      if(*min > number[i]) min = &number[i];
+}
+    이거보면 max는 int고 number도 int 니까 안들어 가는게 맞다. 
+
+max min에는 최대값과 최소값의 주소가 남게된다. 
+
+scanf()함수의 리턴값은?
+???: scanf(); 
+c에서는 참거짓을 나눌때 숫자의 경우 1참, 0거짓, 100은? -100은? 
+0만 거짓이고 다른 모든 값은 다 참으로 규정함. 
+즉 주소값이 널(없음)값이면 
+
+//구조체??
+배열은 왜 쓰냐: 
+
+구조체: 변수명 뒤에 점과 함께 멤버 변수의 이름 적어줌. 
+int main()
+{
+  FILE* file; // 파일핸들러라는 구조체의 포인터 변수
+  int number;
+  char name[20];
+  file = fopen();
+  while(!feof(file)){ // end of file
+    int count = fscanf(file, "", );
+    if(count<1) break;
+    if(!fgets(??, 100, file)) break;
+  }
+  //fclose(file);
+  scanf("%d", &number);
+  getchar();
+  fgets(name, 20, stdin);
+  printf("%s %d\n", name, number);
+
+
+구조체를 왜 포인터로 다룰까? 구조체는 다른거에 비해 데이터의 양이 커서 변수는 그대로 두고 포인터 사용하는게 나음. 
+그래서 . 이 아니고 -> 을 사용해서 표시 
