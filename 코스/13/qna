@@ -1,1 +1,20 @@
+근데 리턴값이 있는 변수는 왜 쓰는거고 리턴값없는 변수는 어떨때 쓰는건데?
 
+구조체 포인터 배열 왜 씀?
+
+- 구조체: 묶어야해서
+- 포인터: 원본의 주소만 주고 수정(읽고 쓰기)
+- 구조체 포인터: 묶인데이터는 사이즈가 큰데 주소를 다루게 
+- 배열: 같은 타입 변수들 번호 붙여서 저장하고 사용
+포인터 여러개 전달하려면 배열로 묶어서 함수에 전달
+- 구조체 포인터 배열: 주소 주고 묶여있는 배열 하나하나 사용하게 한다.
+
+구조체에 plist[10];
+for(int i=0; i<3; i++){
+  plist[i] = addperson(); //plist 받아올때 addperson 사용해서 받아오고 
+  getchar();
+}
+struct st_person* addperson(){ //여기서 return 해주면
+  struct st_person* ptr = (struct st_person*)malloc(sizeof(struct st_person));
+  return(ptr);
+}
