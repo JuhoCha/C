@@ -1,0 +1,31 @@
+동적 메모리 할당에서 NULL 포인터에 free를 호출하면 어떻게 되나요?
+--> 이미 반납해서 자기 공간이 아닌데 들어가려고 하면 안된다
+
+메모리공간
+
+true(1) false(0) 인데 
+
+#include <stdio.h>
+#include <stdlib.h>
+// 배열의 이름은?
+// int A[10]; --> A ===> &A[0] ==> p
+// A[0] --> A라는 주소에서 0번 인덱스에 해당하는 값
+// --> &A[0] 라는 주소에 들어있는 값
+// ==> *(&A[0]) ==> *p
+// =====> A[i] ==> *&A[i] ===> *(p+i)
+// 배열이란 결국 인덱스로 어떤 묶여진 변수의 주소를 찾아가기 편하게 만든 방식
+
+int main(void) {
+  int* p = (int *)malloc(sizeof(int)*10);
+  for(int i=0; i<10; i++)
+    //*(p+i) = i * 100;
+    p[i] = i * 100;
+for(int i=0; i<10; i++)
+    printf("%p - %d\n", p+i, *(p+i));
+/*
+  printf("%p\n", p);
+  p = NULL;
+  free(p);
+  printf("%p\n", p);*/
+  return 0;
+}
