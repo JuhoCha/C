@@ -261,8 +261,13 @@ print_record(list, no-1);
 printf("삭제하시겠습니까?: (0:NO, 1:YES)>");
 scanf("%d", &choice);
 if(choice==1){
-    free(list[no-1]);
-    list[no-1] = list[size-1];
+    // 삭제할 영화 메모리 해제
+        free(list[no-1]);
+        
+        // 뒤에 있는 영화들 앞으로 한 칸씩 이동
+        for (int i = no-1; i < size-1; i++) {
+            list[i] = list[i+1];
+        }
     size--;
 
     printf("영화가 삭제 되었습니다.\n");
